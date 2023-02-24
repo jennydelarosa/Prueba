@@ -10,7 +10,7 @@ pipeline {
         name_final = "${name_container}${tag_imagen}"        
     }
     stages {
-          stage('stop/rm') {
+        stage('stop/rm') {
 
             when {
                 expression { 
@@ -41,7 +41,7 @@ pipeline {
                 }                    
                                   
             }
-            stage('run') {
+        stage('run') {
             steps {
                 script{
                     sh ''' 
