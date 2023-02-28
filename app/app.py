@@ -7,7 +7,7 @@ def hello_world():
 #    return "<p>Hello, World! HOLA !!!</p>"
     data = {
         'titulo':'Bienvenida',
-        'saludo':'Saludos !!!'
+        'saludo':'Saludos cordiales!!!'
     }
     return render_template('index.html',data=data)
 
