@@ -5,7 +5,7 @@ pipeline {
         string(name: 'name_container', defaultValue: 'python-flask-jenny', description: 'nombre del docker')
         string(name: 'name_imagen', defaultValue: 'python-flask', description: 'nombre de la imagen')
         string(name: 'tag_imagen', defaultValue: '0.0.1', description: 'etiqueta de la imagen')
-        string(name: 'puerto_imagen', defaultValue: '8080', description: 'puerto a publicar')
+        string(name: 'puerto_imagen', defaultValue: '80', description: 'puerto a publicar')
     }
     environment {
         name_final = "${name_container}${tag_imagen}"        
