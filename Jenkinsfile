@@ -54,7 +54,7 @@ pipeline {
                 }                    
                                   
             }
-        stage('ecr') {
+/*        stage('ecr') {
             steps {
                 script{
                     sh ''' 
@@ -69,7 +69,7 @@ pipeline {
                     
                 }                    
                                   
-            }
+            } */
             
           
         }   
