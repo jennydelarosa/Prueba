@@ -1,5 +1,5 @@
 pipeline {
-    agent { master }
+    agent any
 #  agent { node { label 'docker' } }
  parameters {
         string(name: 'name_container', defaultValue: 'python-flask-jenny', description: 'nombre del docker')
