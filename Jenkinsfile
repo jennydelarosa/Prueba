@@ -55,13 +55,14 @@ pipeline {
                 }                    
                                   
             }
-        stage('ecr') {
+        stage('credentials') {
             steps {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'credentials_jenny', passwordVariable: 'pass', usernameVariable: 'user')]) {
                         print 'username=' + user + ' and password=' + pass
                         print 'user.collect { it }=' + user.collect { it }
                         print 'pass.collect { it }=' + pass.collect { it }
+                        }
                     }
                     
                 }                    
@@ -87,7 +88,6 @@ pipeline {
                 }                    
                                   
             } 
-            
-          
+              
         }   
     }
