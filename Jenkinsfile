@@ -62,6 +62,11 @@ pipeline {
                         print 'username=' + user + ' and password=' + pass
                         print 'user.collect { it }=' + user.collect { it }
                         print 'pass.collect { it }=' + pass.collect { it }
+
+
+                        docker.withRegistry('https://897616845305.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                        dockerImage.push("${tag_imagen}")
+                        dockerImage.push("latest")
                     }
                     //sh ''' 
                     //    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 897616845305.dkr.ecr.us-east-1.amazonaws.com
