@@ -8,7 +8,7 @@ pipeline {
         string(name: 'puerto_imagen', defaultValue: '80', description: 'puerto a publicar')
     }
     environment {
-        name_final = "${name_container}${tag_imagen}"        
+        name_final = "${name_container}"        
     }
     stages {
         stage('stop/rm') {
