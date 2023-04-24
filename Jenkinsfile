@@ -73,8 +73,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('https://897616845305.dkr.ecr.us-east-1.amazonaws.com/helloword', 'ecr:us-east-1:aws_credentials_ecr') {
-                        dockerImage.push("helloword:${tag_imagen}")
-                        dockerImage.push("helloword:${tag_imagen}")
+                        dockerImage.push("helloword:0.0.3")
+                        dockerImage.push("latest")
                         }
 
                     //sh ''' 
