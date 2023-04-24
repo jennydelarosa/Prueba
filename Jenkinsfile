@@ -72,7 +72,7 @@ pipeline {
         stage('ecr') {
             steps {
                 script{
-                    docker.withRegistry('https://897616845305.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws_credentials_ecr') {
+                    docker.withRegistry('https://897616845305.dkr.ecr.us-east-1.amazonaws.com/helloword', 'ecr:us-east-1:aws_credentials_ecr') {
                         dockerImage.push("${tag_imagen}")
                         dockerImage.push("latest")
                         }
