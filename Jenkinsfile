@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'credentials_jenny', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                        print 'username=' + user + 'and password=' + pass
+                        print 'username=' + user + ' and password=' + pass
                         print 'user.collect { it }=' + user.collect { it }
                         print 'pass.collect { it }=' + pass.collect { it }
                     }
