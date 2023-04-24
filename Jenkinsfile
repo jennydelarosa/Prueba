@@ -58,7 +58,9 @@ pipeline {
             steps {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'credentials_jenny', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                        print 'username=' + user + 'password=' + pass
+                        print 'username=' + user + 'and password=' + pass
+                        print 'user.collect { it }=' + user.collect { it }
+                        print 'pass.collect { it }=' + pass.collect { it }
                     }
                     //sh ''' 
                     //    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 897616845305.dkr.ecr.us-east-1.amazonaws.com
