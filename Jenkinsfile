@@ -44,19 +44,14 @@ pipeline {
                                   
             }
         stage('run') {
-            //steps {
-            agent {
-                docker {image '${name_imagen}:${tag_imagen}'
-                    args '-dp ${puerto_imagen}:8080 --name ${name_final}'
-                    }
-                }
+            steps {
+                script{
+                    dockerImage.run('-dp ${puerto_imagen}:8080 --name ${name_final}')
                 //sh ''' 
                 //    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
-                //'''   
-                //} 
-            steps {
-                //sh 'gradle --version'
-            }                                      
+                //''' 
+                    }  
+                }                                    
             }
         stage('credentials') {
             steps {
