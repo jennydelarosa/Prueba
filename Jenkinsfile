@@ -46,10 +46,15 @@ pipeline {
         stage('run') {
             steps {
                 script{
-                    sh ''' 
-                        docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
- 
-                    '''
+                    agent {
+                        docker {
+                            image "${name_imagen}:${tag_imagen}"
+                            args "-dp ${puerto_imagen}:8080 --name ${name_final}"
+                            }
+                        }
+                    //sh ''' 
+                    //    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
+                    //'''
                     }
                     
                 }                    
