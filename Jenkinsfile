@@ -46,8 +46,7 @@ pipeline {
         stage('run') {
             steps {
                 agent {
-                    docker {
-                        image '${name_imagen}:${tag_imagen}'
+                    docker {image '${name_imagen}:${tag_imagen}'
                         args '-dp ${puerto_imagen}:8080 --name ${name_final}'
                         }
                     }
