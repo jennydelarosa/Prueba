@@ -53,7 +53,10 @@ pipeline {
                 //sh ''' 
                 //    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
                 //'''   
-                //}                                       
+                //} 
+            steps {
+                //sh 'gradle --version'
+            }                                      
             }
         stage('credentials') {
             steps {
