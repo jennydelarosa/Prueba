@@ -47,8 +47,8 @@ pipeline {
             steps {
                 agent {
                     docker {
-                        image "${name_imagen}:${tag_imagen}"
-                        args "-dp ${puerto_imagen}:8080 --name ${name_final}"
+                        image '${name_imagen}:${tag_imagen}'
+                        args '-dp ${puerto_imagen}:8080 --name ${name_final}'
                         }
                     }
                 //sh ''' 
