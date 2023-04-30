@@ -44,6 +44,7 @@ pipeline {
                                   
             }
         stage('run') {
+            /* Error !!!
             agent {
                 docker {
                     image '${name_imagen}:${tag_imagen}'
@@ -52,16 +53,16 @@ pipeline {
             }
             steps {
                 sh 'echo "Running tests..."'
-            }
-            //steps {
-            //    script{
-            //        dockerImage.run('-dp ${puerto_imagen}:8080 --name ${name_final}')
+            } */
+            steps {
+                script{
+                    dockerImage.run('-dp ${puerto_imagen}:8080 --name ${name_final}')
                 
                 //sh ''' 
                 //    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
                 //''' 
-            //        }  
-            //    }                                    
+                    }  
+                }                                    
             }
         stage('credentials') {
             steps {
