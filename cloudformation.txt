@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Part 1 - Build a webapp stack with CloudFormation
+
+Parameters:
+  AvailabilityZone:
+    Type: AWS::EC2::AvailabilityZone::Name
+    Default: us-east-1c
+  EnvironmentType:
+    Description: "Specify the Environment type of the stack."
+    Type: String
+    Default: test
+    AllowedValues:
+      - dev
+      - test
+      - prod
+  AmiID:
+    Type: AWS::EC2::Image::Id
+    Description: "The ID of the AMI."
+    Default: ami-07d66e330cada52a9
+  KeyPairName:
+    Type: String
+    Description: The name of an existing Amazon EC2 key pair in this region to use to SSH into the Amazon EC2 instances.
+    Default: kp-jenny
+
+Mappings:
+  EnvironmentToInstanceType:
+    dev:
+      InstanceType: t2.nano
+    test:
+      InstanceType: t2.micro
+    prod:
+      InstanceType: t2.small
+
+Resources:
+  JenkinsInstJenny:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: !Ref AvailabilityZone
+      ImageId: !Ref AmiID
+      InstanceType:
+        !FindInMap [
+          EnvironmentToInstanceType,
+          !Ref EnvironmentType,
+          InstanceType,
+        ]
+      KeyName: !Ref KeyPairName
+      Tags: 
+        - Key: "Name"
+          Value: "JenkinsCFJenny"
+      SecurityGroupIds:
+        - !Ref JenkinsSGJenny
+
+  JenkinsSGJenny:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Join ["-", [jenkinsCFJenny, dev]]
+      GroupDescription: "Allow HTTP/HTTPS and SSH inbound and outbound traffic"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
