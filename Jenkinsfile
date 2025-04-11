@@ -68,15 +68,15 @@ pipeline {
             } */
             steps {
                 script{
-                    dockerImage.run('-dp ${puerto_imagen}:8080 --name ${name_final}')
+                    //dockerImage.run('-dp ${puerto_imagen}:8080 --name ${name_final}')
                 
-                //sh ''' 
-                //    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
-                //''' 
+                sh ''' 
+                    docker run -dp ${puerto_imagen}:8080 --name ${name_final} ${name_imagen}:${tag_imagen}
+                ''' 
                     }  
                 }                                    
             }
-        stage('credentials') {
+    /*    stage('credentials') {
             steps {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'credentials_jenny', passwordVariable: 'pass', usernameVariable: 'user')]) {
@@ -108,7 +108,7 @@ pipeline {
                     
                 }                    
                                   
-            } 
+            } */
               
         }   
     }
