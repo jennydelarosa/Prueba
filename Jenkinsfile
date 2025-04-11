@@ -12,14 +12,18 @@ pipeline {
     }
     stages {
         stage('stop/rm') {
-            def exists = sh(script: "docker ps -aqf name=${params.name_container}", returnStdout: true).trim()
-            if (exists != '') {
-                sh """
-                    docker stop ${params.name_container} || true
-                    docker rm ${params.name_container} || true
-                """
-            } else {
-                echo "No hay contenedor para detener o eliminar"
+            steps {
+                script {
+                    def exists = sh(script: "docker ps -aqf name=${params.name_container}", returnStdout: true).trim()
+                    if (exists != '') {
+                        sh """
+                            docker stop ${params.name_container} || true
+                            docker rm ${params.name_container} || true
+                        """
+                    } else {
+                        echo "No hay contenedor para detener o eliminar"
+                    }
+                }
             }
             /*when {
                 expression { 
