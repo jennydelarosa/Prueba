@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ data.titulo }}</title>
+</head>
+<body>
+    <h1>{{ data.saludo }}</h1>
+
+    <form method="POST" action="/">
+        <input type="text" name="nombre" placeholder="Escriba un nombre" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Nombres guardados:</h2>
+    <ul>
+        {% for nombre in data.nombres %}
+            <li>{{ nombre }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
